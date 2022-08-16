@@ -1,0 +1,17 @@
+class Solution:
+    def distributeCookies(self, cookies: List[int], k: int) -> int:
+        ans = float('inf')
+        distribution = [0] * k
+        def recee(i):
+            nonlocal ans, distribution
+            if (i == len(cookies)):
+                ans = min(ans, max(distribution))
+                return
+            if ans <= max(distribution):
+                return
+            for j in range(k):
+                distribution[j] += cookies[i]
+                recee(i+1)
+                distribution[j] -= cookies[i]
+        recee(0)
+        return ans

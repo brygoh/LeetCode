@@ -1,0 +1,9 @@
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        tempOne = 0
+        tempTwo = 0
+        for i in nums:
+            answer = max(tempOne + i, tempTwo)
+            tempOne = tempTwo
+            tempTwo = answer
+        return max(tempOne, tempTwo)

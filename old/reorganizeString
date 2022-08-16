@@ -1,0 +1,25 @@
+class Solution:
+    def reorganizeString(self, s: str) -> str:
+        dictionary = {}
+        for i in s:
+            if i not in dictionary:
+                dictionary[i] = 0
+            dictionary[i] += 1
+        letter = max(dictionary, key=dictionary.get)
+        maximum = max(dictionary.values())
+        if maximum > (len(s) + 1) / 2:
+            return ""
+        index = 0
+        answer = [''] * len(s)
+        while dictionary[letter] > 0:
+            answer[index] = letter
+            index += 2
+            dictionary[letter] -= 1
+        for i in dictionary:
+            while dictionary[i] > 0:
+                if (index >= len(s)):
+                    index = 1
+                answer[index] = i
+                index += 2
+                dictionary[i] -= 1
+        return "".join(answer)

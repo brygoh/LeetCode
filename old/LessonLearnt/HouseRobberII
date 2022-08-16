@@ -1,0 +1,13 @@
+class Solution:
+    def rob(self, nums: List[int]) -> int:
+        if len(nums) == 1:
+            return nums[0]
+        def houseRobber(arr):
+            tempOne = 0
+            tempTwo = 0
+            for i in arr:
+                answer = max(tempOne + i, tempTwo)
+                tempOne = tempTwo
+                tempTwo = answer
+            return max(tempOne, tempTwo)
+        return max(houseRobber(nums[1:]), houseRobber(nums[:-1]))

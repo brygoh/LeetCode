@@ -1,0 +1,11 @@
+class Solution:
+    def distinctNames(self, ideas: List[str]) -> int:
+        ans = 0
+        distDict = [set() for i in range(26)]
+        for i in ideas:
+            distDict[ord(i[0]) - ord('a')].add(i[1:])
+        for j in range(25):
+            for k in range(j+1, 26):
+                temp = len(distDict[j] & distDict[k])
+                ans += 2 * (len(distDict[j]) - temp) * (len(distDict[k]) - temp)
+        return ans
