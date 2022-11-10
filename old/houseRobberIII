@@ -1,9 +1,0 @@
-class Solution:
-    def rob(self, root: Optional[TreeNode]) -> int:
-        def houseRobber(curr):
-            if not curr:
-                return (0, 0)
-            left = houseRobber(curr.left)
-            right = houseRobber(curr.right)
-            return(curr.val + left[1] + right[1], max(left[1], left[0]) + max(right[1], right[0]))
-        return max(houseRobber(root))
